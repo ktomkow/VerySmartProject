@@ -7,7 +7,7 @@ const initialState = {
 function gridReducer(state = initialState, action) {
   if (action.type === GRID_ACTIONS.ITERATION) {
     return Object.assign({}, state, {
-      rows: action.payload,
+      rows: state.rows
     });
   }
 
@@ -22,7 +22,8 @@ function gridReducer(state = initialState, action) {
     let row = rows.find(x => x.id === action.cell.rowId);
     let cell = row.cells.find(c => {if(c.id === action.cell.id) return c;});
     cell.status = "alive";
-    
+    cell.power = 500;
+
     return Object.assign({}, state, {
       rows: rows
     });

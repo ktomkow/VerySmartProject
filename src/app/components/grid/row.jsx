@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import Cell from "./cell";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,11 +17,11 @@ const Row = (props) => {
   const { row } = props;
 
   return (
-    <Box className={classes.root}>
+    <Container className={classes.row}>
       {row.cells.map((cell) => (
         <Cell key={Math.random()} cell={cell} />
       ))}
-    </Box>
+    </Container>
   );
 };
 

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
   },
   inputs: {
       paddingLeft:0,
@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Grid = (props) => {
   const classes = useStyles();
-  const [width, setWidth] = React.useState(3);
-  const [height, setHight] = React.useState(3);
+  const [width, setWidth] = React.useState(5);
+  const [height, setHight] = React.useState(5);
 
   const maxWidth = 30;
   const maxHeight = 30;
@@ -44,7 +44,7 @@ const Grid = (props) => {
   };
 
   const generate = () => {
-    props.generate(width, height);
+    props.generate(height, width);
   };
 
   const handleWidthChange = (event) => {
@@ -107,11 +107,11 @@ const Grid = (props) => {
           }}
         />
       </Container>
-      <Box className={classes.grid}>
+      <Container className={classes.grid}>
         {props.rows.map((row) => (
           <Row key={Math.random()} row={row} />
         ))}
-      </Box>
+      </Container>
     </Container>
   );
 };

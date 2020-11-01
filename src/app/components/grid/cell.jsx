@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     margin: 0,
     height: 20,
-    width: 20,
+    width: 20
   },
   cell: {
     height: "100%",
@@ -18,15 +18,15 @@ const useStyles = makeStyles((theme) => ({
   },
   aliveCell: {
     fill: theme.palette.success.main,
-    '&:hover':{
-        fill: theme.palette.success.dark
-      }
+    "&:hover": {
+      fill: theme.palette.success.dark,
+    },
   },
   deadCell: {
     fill: theme.palette.error.main,
-    '&:hover':{
-        fill: theme.palette.error.dark
-      }
+    "&:hover": {
+      fill: theme.palette.error.dark,
+    },
   },
   svg: {
     height: "100%",
@@ -37,19 +37,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Cell = (props) => {
   const classes = useStyles();
-  const {cell} = props;
+  const { cell } = props;
 
   const clickHandler = () => {
+    console.log("Cell:", cell);
     props.switchCell(cell);
   };
 
   return (
     <div className={classes.root}>
       <svg className={classes.svg} onClick={clickHandler}>
-        {cell.status === "alive" && (
+        {cell.power > 0 && (
           <rect className={`${classes.cell} ${classes.aliveCell}`} />
         )}
-        {cell.status === "dead" && (
+        {cell.power === 0 && (
           <rect className={`${classes.cell} ${classes.deadCell}`} />
         )}
       </svg>
