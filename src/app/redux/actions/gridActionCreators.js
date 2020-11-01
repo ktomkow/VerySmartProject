@@ -7,19 +7,22 @@ export const iterate = (dispatch) => {
   });
 };
 
+export const switchCell = (cell, dispatch) => {
+  dispatch({
+    type: GRID_ACTIONS.SWITCH,
+    cell: cell,
+  });
+};
+
 export const generate = (rowsCount, colsCount, dispatch) => {
   let rows = [];
+  let id = 0;
   for (let r = 0; r < rowsCount; r++) {
-    let row = [];
-    for (let c = 0; c < colsCount; c++) {
-      let cell = {};
-      if(Math.random() > 0.5) {
-        cell = {status: "alive"}
-      } else {
-        cell = {status: "dead"}
-      }
+    let row = { id: r, cells: [] };
+    for (let c = 0; c < colsCount; c++, id++) {
+      const cell = { status: "dead", id: id, rowId: r, colId: c };
 
-      row.push(cell);
+      row.cells.push(cell);
     }
 
     rows.push(row);

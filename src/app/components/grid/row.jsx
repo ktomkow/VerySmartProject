@@ -11,11 +11,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Row = ({ cells }) => {
+const Row = ({ row }) => {
   const classes = useStyles();
+  console.log("Row:::", row)
   return (
     <Box className={classes.root}>
-      {cells.map((cell) => (
+      {row.cells.map((cell) => (
         <Cell key={Math.random()} cell={cell} />
       ))}
     </Box>

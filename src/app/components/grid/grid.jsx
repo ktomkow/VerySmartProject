@@ -110,7 +110,7 @@ const Grid = (props) => {
       </Container>
       <Box className={classes.grid}>
         {props.rows.map((row) => (
-          <Row key={Math.random()} cells={row} />
+          <Row key={Math.random()} row={row} />
         ))}
       </Box>
     </Container>
