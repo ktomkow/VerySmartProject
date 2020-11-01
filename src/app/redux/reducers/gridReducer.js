@@ -1,13 +1,16 @@
 import { GRID_ACTIONS } from "../types/consts";
 
+const cell = {status: "alive"}
+const row = [cell, cell];
+
 const initialState = {
-  cells: [],
+  rows: [row, row, row],
 };
 
 function gridReducer(state = initialState, action) {
   if (action.type === GRID_ACTIONS.ITERATION) {
     return Object.assign({}, state, {
-        cells: action.payload
+      rows: action.payload.newGrid
     });
   }
 

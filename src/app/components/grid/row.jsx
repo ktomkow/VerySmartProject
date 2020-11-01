@@ -2,10 +2,13 @@ import React from "react";
 
 import Cell from "./cell";
 
-const Row = (props) => {
+const Row = ({ cells }) => {
+  console.log("Cells: ", cells);
   return (
     <div>
-      <Cell />
+      {cells.map((cell) => (
+        <Cell key={Math.random()} cell={cell} />
+      ))}
     </div>
   );
 };

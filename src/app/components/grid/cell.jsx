@@ -1,7 +1,8 @@
 import React from "react";
 
-const Cell = (props) => {
-  return <div>cell</div>;
+const Cell = ({cell}) => {
+    console.log("One cell: ", cell);
+  return <div>{cell.status}</div>;
 };
 
 export default Cell;
