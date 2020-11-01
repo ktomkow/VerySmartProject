@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Cell from "./cell";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
-    row: {
-        display: "flex",
-        flexDirection: "row"
-    }
+  row: {
+    display: "flex",
+    flexDirection: "row",
+  },
 }));
 
-const Row = ({ row }) => {
+const Row = (props) => {
   const classes = useStyles();
-  console.log("Row:::", row)
+  const { row } = props;
+
   return (
     <Box className={classes.root}>
       {row.cells.map((cell) => (
@@ -23,4 +25,8 @@ const Row = ({ row }) => {
   );
 };
 
-export default Row;
+const mapStateToProps = (state) => {
+  return { gridReducer: state.gridReducer };
+};
+
+export default connect(mapStateToProps, null)(Row);

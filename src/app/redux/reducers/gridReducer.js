@@ -1,7 +1,7 @@
 import { GRID_ACTIONS } from "../types/consts";
 
 const initialState = {
-  rows: [{id: 0, cells:[]}],
+  rows: [{id: 0, cells:[]}]
 };
 
 function gridReducer(state = initialState, action) {
@@ -22,7 +22,7 @@ function gridReducer(state = initialState, action) {
     let row = rows.find(x => x.id === action.cell.rowId);
     let cell = row.cells.find(c => {if(c.id === action.cell.id) return c;});
     cell.status = "alive";
-    console.log("Rows: ",rows);
+    
     return Object.assign({}, state, {
       rows: rows
     });

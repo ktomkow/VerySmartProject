@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Grid = (props) => {
   const classes = useStyles();
-  const [width, setWidth] = React.useState(10);
-  const [height, setHight] = React.useState(10);
+  const [width, setWidth] = React.useState(3);
+  const [height, setHight] = React.useState(3);
 
   const maxWidth = 30;
   const maxHeight = 30;
@@ -38,7 +38,6 @@ const Grid = (props) => {
   useEffect(() => {
     generate();
   }, []);
-
 
   const iterate = () => {
     props.iterate();

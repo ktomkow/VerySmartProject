@@ -14,14 +14,19 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "100%",
     margin: 0,
-
     padding: 0,
   },
   aliveCell: {
     fill: theme.palette.success.main,
+    '&:hover':{
+        fill: theme.palette.success.dark
+      }
   },
   deadCell: {
     fill: theme.palette.error.main,
+    '&:hover':{
+        fill: theme.palette.error.dark
+      }
   },
   svg: {
     height: "100%",
