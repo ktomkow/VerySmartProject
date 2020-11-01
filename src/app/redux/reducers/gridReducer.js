@@ -10,7 +10,7 @@ const initialState = {
 function gridReducer(state = initialState, action) {
   if (action.type === GRID_ACTIONS.ITERATION) {
     return Object.assign({}, state, {
-      rows: action.payload.newGrid
+      rows: action.payload
     });
   }
 
