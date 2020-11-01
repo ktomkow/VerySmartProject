@@ -2,30 +2,24 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { switchCell } from "../../redux/actions/gridActionCreators";
+import { green, orange } from "@material-ui/core/colors";
+import indigo from "@material-ui/core/colors/indigo";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: 0,
     margin: 0,
     height: 20,
-    width: 20
+    width: 20,
   },
   cell: {
     height: "100%",
     width: "100%",
     margin: 0,
     padding: 0,
-  },
-  aliveCell: {
-    fill: theme.palette.success.main,
+    fill: (props) => props.cellColor,
     "&:hover": {
-      fill: theme.palette.success.dark,
-    },
-  },
-  deadCell: {
-    fill: theme.palette.error.main,
-    "&:hover": {
-      fill: theme.palette.error.dark,
+      fill: (props) => props.hoveredCellColor,
     },
   },
   svg: {
@@ -36,8 +30,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Cell = (props) => {
-  const classes = useStyles();
+  const mapPowerToColor = (power) => {
+    let number = power;
+    if(!number) {
+      number = 0;
+    }
+    if(number > 238) {
+      number = 238;
+    }
+
+    number = number + (255-238);
+    number = 255 - number;
+    const value = number.toString(16);
+
+    return { cellColor: `#${value}${value}${value}`, hoveredCellColor: "#00FF00" };
+  };
+  
   const { cell } = props;
+  const colors = mapPowerToColor(cell.power);
+  const classes = useStyles(colors);
 
   const clickHandler = () => {
     console.log("Cell:", cell);
@@ -47,12 +58,7 @@ const Cell = (props) => {
   return (
     <div className={classes.root}>
       <svg className={classes.svg} onClick={clickHandler}>
-        {cell.power > 0 && (
-          <rect className={`${classes.cell} ${classes.aliveCell}`} />
-        )}
-        {cell.power === 0 && (
-          <rect className={`${classes.cell} ${classes.deadCell}`} />
-        )}
+        <rect className={classes.cell} />
       </svg>
     </div>
   );
