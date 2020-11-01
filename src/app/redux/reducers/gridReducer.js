@@ -21,7 +21,6 @@ function gridReducer(state = initialState, action) {
     let rows = state.rows;
     let row = rows.find(x => x.id === action.cell.rowId);
     let cell = row.cells.find(c => {if(c.id === action.cell.id) return c;});
-    cell.status = "alive";
     cell.power = 255;
 
     return Object.assign({}, state, {

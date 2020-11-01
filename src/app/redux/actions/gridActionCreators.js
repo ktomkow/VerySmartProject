@@ -20,7 +20,7 @@ export const generate = (rowsCount, colsCount, dispatch) => {
   for (let r = 0; r < rowsCount; r++) {
     let row = { id: r, cells: [] };
     for (let c = 0; c < colsCount; c++, id++) {
-      const cell = { status: "dead", id: id, rowId: r, colId: c, power: 0 };
+      const cell = {id: id, rowId: r, colId: c, power: 0 };
 
       row.cells.push(cell);
     }
