@@ -6,16 +6,20 @@ import reportWebVitals from "./reportWebVitals";
 
 import { SnackbarProvider } from "notistack";
 
-import Tmp from "./app/components/tmp";
-
+import { theme, darkTheme } from "./app/themes/theme";
+import { ThemeProvider } from "@material-ui/core";
+import { Provider } from "react-redux";
+import store from "./app/redux/stores/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Tmp>
-      <SnackbarProvider maxSnack={10}>
-        <App />
-      </SnackbarProvider>
-    </Tmp>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider maxSnack={10}>
+          <App />
+        </SnackbarProvider>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
