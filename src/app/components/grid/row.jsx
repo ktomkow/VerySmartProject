@@ -2,17 +2,23 @@ import React from "react";
 
 import Cell from "./cell";
 import { makeStyles } from "@material-ui/core/styles";
+import { Box } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+    row: {
+        display: "flex",
+        flexDirection: "row"
+    }
+}));
 
 const Row = ({ cells }) => {
-  const classes = makeStyles();
+  const classes = useStyles();
   return (
-    <div>
+    <Box className={classes.root}>
       {cells.map((cell) => (
         <Cell key={Math.random()} cell={cell} />
       ))}
-    </div>
+    </Box>
   );
 };
 

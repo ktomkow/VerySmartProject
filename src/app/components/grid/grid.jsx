@@ -2,11 +2,25 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Row from "./row";
+import { Box, Container, Paper } from "@material-ui/core";
 
 import { iterate, generate } from "../../redux/actions/gridActionCreators";
 import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "2em",
+    margin: "2em",
+  },
+  grid: {
+    display: "flex",
+    flexDirection: "row",
+  },
+}));
 
 const Grid = (props) => {
+  const classes = useStyles();
   const iterate = () => {
     props.iterate();
   };
@@ -16,13 +30,15 @@ const Grid = (props) => {
   };
 
   return (
-    <div>
+    <Container className={classes.root}>
       <Button onClick={iterate}>Iterate</Button>
       <Button onClick={generate}>Generate</Button>
-      {props.rows.map((row) => (
-        <Row key={Math.random()} cells={row} />
-      ))}
-    </div>
+      <Box className={classes.grid}>
+        {props.rows.map((row) => (
+          <Row key={Math.random()} cells={row} />
+        ))}
+      </Box>
+    </Container>
   );
 };
 
@@ -33,7 +49,7 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     iterate: () => iterate(dispatch),
-    generate: () => generate(10, 10, dispatch)
+    generate: () => generate(10, 10, dispatch),
   };
 }
 
