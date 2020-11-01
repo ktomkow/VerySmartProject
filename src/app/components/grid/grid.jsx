@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect } from "react";
 import { connect } from "react-redux";
 
 import Row from "./row";
@@ -34,6 +34,11 @@ const Grid = (props) => {
 
   const maxWidth = 30;
   const maxHeight = 30;
+
+  useEffect(() => {
+    generate();
+  }, []);
+
 
   const iterate = () => {
     props.iterate();

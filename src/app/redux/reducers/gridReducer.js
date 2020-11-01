@@ -1,11 +1,7 @@
 import { GRID_ACTIONS } from "../types/consts";
 
-const aliveCell = {status: "alive"}
-const deadCell = {status: "dead"}
-const row = [aliveCell, aliveCell, deadCell, aliveCell];
-
 const initialState = {
-  rows: [row, row, row],
+  rows: []
 };
 
 function gridReducer(state = initialState, action) {
