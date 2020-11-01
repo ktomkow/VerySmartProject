@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
   },
+  inputs: {
+      paddingLeft:0,
+    paddingBottom: "1em",
+  },
   input: {
     width: 50,
   },
@@ -27,6 +31,10 @@ const Grid = (props) => {
   const classes = useStyles();
   const [width, setWidth] = React.useState(10);
   const [height, setHight] = React.useState(10);
+
+  const maxWidth = 30;
+  const maxHeight = 30;
+
   const iterate = () => {
     props.iterate();
   };
@@ -46,16 +54,16 @@ const Grid = (props) => {
   const handleBlurWidth = () => {
     if (width < 1) {
       setWidth(1);
-    } else if (width > 20) {
-      setWidth(20);
+    } else if (width > maxWidth) {
+      setWidth(maxWidth);
     }
   };
 
   const handleBlurHeight = () => {
     if (height < 1) {
       setHight(1);
-    } else if (height > 20) {
-      setHight(20);
+    } else if (height > maxHeight) {
+      setHight(maxHeight);
     }
   };
 
@@ -63,36 +71,38 @@ const Grid = (props) => {
     <Container className={classes.root}>
       <Button onClick={iterate}>Iterate</Button>
       <Button onClick={generate}>Generate</Button>
-      <Typography>Width: </Typography>
-      <Input
-        className={classes.input}
-        value={width}
-        margin="dense"
-        onChange={handleWidthChange}
-        onBlur={handleBlurWidth}
-        inputProps={{
-          step: 1,
-          min: 1,
-          max: 30,
-          type: "number",
-          "aria-labelledby": "input-slider",
-        }}
-      />
-      <Typography>Height: </Typography>
-      <Input
-        className={classes.input}
-        value={height}
-        margin="dense"
-        onChange={handleHeightChange}
-        onBlur={handleBlurHeight}
-        inputProps={{
-          step: 1,
-          min: 1,
-          max: 30,
-          type: "number",
-          "aria-labelledby": "input-slider",
-        }}
-      />
+      <Container className={classes.inputs}>
+        <Typography>Width: </Typography>
+        <Input
+          className={classes.input}
+          value={width}
+          margin="dense"
+          onChange={handleWidthChange}
+          onBlur={handleBlurWidth}
+          inputProps={{
+            step: 1,
+            min: 1,
+            max: maxWidth,
+            type: "number",
+            "aria-labelledby": "input-slider",
+          }}
+        />
+        <Typography>Height: </Typography>
+        <Input
+          className={classes.input}
+          value={height}
+          margin="dense"
+          onChange={handleHeightChange}
+          onBlur={handleBlurHeight}
+          inputProps={{
+            step: 1,
+            min: 1,
+            max: maxHeight,
+            type: "number",
+            "aria-labelledby": "input-slider",
+          }}
+        />
+      </Container>
       <Box className={classes.grid}>
         {props.rows.map((row) => (
           <Row key={Math.random()} cells={row} />
