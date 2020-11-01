@@ -1,9 +1,12 @@
 import React from "react";
 
 import Cell from "./cell";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({}));
 
 const Row = ({ cells }) => {
-  console.log("Cells: ", cells);
+  const classes = makeStyles();
   return (
     <div>
       {cells.map((cell) => (

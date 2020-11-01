@@ -3,18 +3,22 @@ import { connect } from "react-redux";
 
 import Row from "./row";
 
-import { iterate } from "../../redux/actions/gridActionCreators";
+import { iterate, generate } from "../../redux/actions/gridActionCreators";
 import { Button } from "@material-ui/core";
 
 const Grid = (props) => {
   const iterate = () => {
     props.iterate();
   };
-  console.log("Rows:", props.rows);
+
+  const generate = () => {
+    props.generate();
+  };
+
   return (
     <div>
       <Button onClick={iterate}>Iterate</Button>
-
+      <Button onClick={generate}>Generate</Button>
       {props.rows.map((row) => (
         <Row key={Math.random()} cells={row} />
       ))}
@@ -29,6 +33,7 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     iterate: () => iterate(dispatch),
+    generate: () => generate(10, 10, dispatch)
   };
 }
 
